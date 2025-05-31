@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Feed</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="feed-container">
+    <div class="top-bar">
+      <h2>Welcome, {{ session['username'] }}</h2>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <form method="POST" action="/post" class="post-form">
+      <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
+      <button type="submit">Post</button>
+    </form>
+
+    <div class="posts">
+      {% for content, username in posts %}
+        <div class="post">
+          <strong>{{ username }}</strong><br>
+          <p>{{ content }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
